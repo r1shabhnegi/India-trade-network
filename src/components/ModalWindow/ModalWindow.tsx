@@ -31,7 +31,7 @@ const ModalWindow = ({
       className='scroller sm:bg-[rgba(0,0,0,0.54)] fixed w-full h-full top-0 left-0 z-[9999] flex justify-center items-center transition ease-in-out duration-[900ms] bg-white'
       onClick={() => setIsModal(false)}>
       <div
-        className='relative z-[100] max-w-[100%] sm:max-w-[90%]  md:max-w-[85%] lg:max-w-[70%] xl:max-w-[65%] w-full h-full sm:h-[92%] bg-white flex items-center rounded-3xl p-2 xl:p-4 sm:border-y-[0.8rem] sm:border-[#115D92] py-'
+        className='relative z-[100] max-w-[100%] sm:max-w-[90%]  md:max-w-[85%] lg:max-w-[70%] xl:max-w-[65%] w-full sm:h-[92%] h-full bg-white flex items-center rounded-lg sm:rounded-2xl md:rounded-2xl lg:xl:rounded-3xl p-2 xl:p-4 sm:border-y-[0.8rem] sm:border-[#115D92] py-'
         onClick={(e) => e.stopPropagation()}>
         <div
           key={port.port_id + port.country}
@@ -58,7 +58,9 @@ const ModalWindow = ({
             kpis={kpis}
             portId={port?.port_id}
           />
-          <button className='bg-red-500 block sm:hidden py-2 rounded-md text-white font-lg text-lg'>
+          <button
+            className='bg-red-500 block sm:hidden py-2 rounded-md text-white font-lg text-lg'
+            onClick={() => setIsModal(false)}>
             Close
           </button>
         </div>
@@ -68,7 +70,7 @@ const ModalWindow = ({
           onClick={() => setIsModal(false)}>
           <FontAwesomeIcon
             icon={faXmark}
-            className='size-4 md:size-6 text-white p-1.5'
+            className='size-6 text-white p-1.5'
           />
         </span>
       </div>

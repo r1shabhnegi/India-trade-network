@@ -5,25 +5,41 @@ import MapBoard from "@/components/MapBoard";
 export default function Home() {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string}>
-      <div className='flex flex-col'>
-        <div className='fixed top-0 left-0 w-full z-[9999] py-2.5 bg-[#67696b] '>
-          <h1 className='text-white text-center text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight'>
-            Indian Ports Trade Route
+      <div className=''>
+        <div className='fixed top-0 left-0 w-full z-[9999] pt-1.5 bg-[#515253] '>
+          <h1 className='text-white text-center text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-tight'>
+            Indian Ports Trade Network
           </h1>
-          <p className='absolute top-4 right-0 marquee w-[37%] bg-[#67696b]'>
-            <span className='text-sky-400 text-lg font-bold'>
-              This is not the trade routes map&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <p className='marquee w-full text-sky-400 text-sm font-bold bg-[#515253]'>
+            <span className=''>
+              This is not a trade routes map&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; This is not the trade routes
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; This is not a trade routes
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp; This is a the trade routes
             </span>
           </p>
         </div>
 
-        <div className='w-full h-screen pt-14'>
+        <div className='w-full h-svh pt-14'>
           <div className='h-full'>
             <MapBoard />
           </div>

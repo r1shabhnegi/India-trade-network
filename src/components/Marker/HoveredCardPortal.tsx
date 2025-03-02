@@ -71,8 +71,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
 
     return createPortal(
       <div
-        className={`fixed bg-white p-2 pb-1 rounded-lg shadow-2xl z-[2999] sm:w-40 md:w-52 xl:w-60 
-        transition-opacity ease-in-out duration-300 ${
+        className={`fixed bg-white p-2 pb-1 rounded-lg shadow-2xl z-[2999] w-36 sm:w-40 md:w-52 xl:w-60 transition-opacity ease-in-out duration-300 ${
           shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         style={{
@@ -94,7 +93,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
               }}
             />
 
-            <p className='text-center text-[0.9rem] font-[600] text-gray-600 my-1'>
+            <p className='text-center text-[0.8rem] md:text-[1rem] font-[600] text-gray-600 my-1'>
               {port.name}
             </p>
             <div className='text-center gap-1 text-[0.8rem] flex justify-center items-center text-gray-600'>

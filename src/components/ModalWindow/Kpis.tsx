@@ -6,8 +6,8 @@ import React, { useState } from "react";
 
 const TargetSection = ({ label, targetText, links }: ITargetSection) => {
   return (
-    <div className='flex border-t border-gray-200 mt-3 pt-3'>
-      <div className='w-[30%]'>
+    <div className='flex flex-col sm:flex-row border-t border-gray-200 mt-3 pt-3'>
+      <div className='sm:w-[30%]'>
         <p className='font-semibold text-gray-700'>{label} :</p>
       </div>
       <div className='flex flex-col'>

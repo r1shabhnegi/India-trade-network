@@ -76,13 +76,10 @@ const Markers: React.FC<MarkersProps> = ({
 
   const handleClickMarker = useCallback(
     (port: Port) => {
-      // Toggle clicked port card state
       setClickedPortCard({ lat: +port.lat, lng: +port.lng, name: port.name });
 
-      // Toggle clicked port state
       setClickedPort(port);
 
-      // Set map center and zoom if port doesn't have ind_port_name
       if (port && !port.ind_port_name) {
         const settings =
           portZoomSettings[port.name as keyof typeof portZoomSettings];
@@ -106,14 +103,12 @@ const Markers: React.FC<MarkersProps> = ({
       setHoveredPort(port);
 
       if (port) {
-        // Set regular hovered port state
         setHoveredPortCard({
           lat: +port.lat,
           lng: +port.lng,
           name: port.name,
         });
 
-        // Set position for the portal component if we have the event
         if (event) {
           setHoveredPortalInfo({
             port,
@@ -153,8 +148,8 @@ const Markers: React.FC<MarkersProps> = ({
               onMouseEnter={(e) => handleHoverMarker(port, e)}
               onMouseLeave={() => handleHoverMarker(null)}
               size='3x'
-              className='hover:text-green-600 text-green-800'
-              opacity={0.8}
+              className='opacity-80 hover:opacity-100 hover:text-green-600 text-green-800'
+              // opacity={0.8}
             />
             {clickedPortCard?.name === port.name && (
               <MarkerCard
