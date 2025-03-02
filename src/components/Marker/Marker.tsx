@@ -1,5 +1,5 @@
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MarkerCard from "./MarkerCard";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
@@ -52,6 +52,19 @@ const Markers: React.FC<MarkersProps> = ({
     position: null,
   });
 
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 900);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const portZoomSettings = useMemo(
     () => ({
       "Jawaharlal Nehru Port Authority": {
@@ -80,7 +93,7 @@ const Markers: React.FC<MarkersProps> = ({
 
       setClickedPort(port);
 
-      if (port && !port.ind_port_name) {
+      if (!isMobile && port && !port.ind_port_name) {
         const settings =
           portZoomSettings[port.name as keyof typeof portZoomSettings];
         if (settings) {
@@ -92,9 +105,10 @@ const Markers: React.FC<MarkersProps> = ({
     [
       setClickedPortCard,
       setClickedPort,
+      isMobile,
+      portZoomSettings,
       setDefaultCenter,
       setDefaultZoom,
-      portZoomSettings,
     ]
   );
 

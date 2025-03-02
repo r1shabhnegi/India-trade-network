@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string}>
       <div className=''>
-        <div className='fixed top-0 left-0 w-full z-[9999] pt-1.5 bg-[#515253] '>
+        <div className='fixed top-0 left-0 w-full z-[9999] pt-2 lg:pt-1.5 bg-[#515253] '>
           <h1 className='text-white text-center text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-tight'>
             Indian Ports Trade Network
           </h1>
