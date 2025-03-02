@@ -1,0 +1,80 @@
+-- CREATE TABLE `kpi_target_links` (
+-- 	`link_id` int NOT NULL,
+-- 	`target_type` varchar(50) NOT NULL,
+-- 	`link_url` varchar(500) NOT NULL,
+-- 	`created_at` timestamp NOT NULL DEFAULT (now()),
+-- 	`kpi_id` int,
+-- 	CONSTRAINT `kpi_target_links_link_id` PRIMARY KEY(`link_id`)
+-- );
+-- --> statement-breakpoint
+-- CREATE TABLE `port_green_initiatives` (
+-- 	`initiative_id` int NOT NULL,
+-- 	`initiative` text NOT NULL,
+-- 	`initiative_url` varchar(200) NOT NULL,
+-- 	`kpi` varchar(500),
+-- 	`created_at` timestamp NOT NULL DEFAULT (now()),
+-- 	`kpi_id` int,
+-- 	`portId` int NOT NULL,
+-- 	CONSTRAINT `port_green_initiatives_initiative_id` PRIMARY KEY(`initiative_id`)
+-- );
+-- --> statement-breakpoint
+-- CREATE TABLE `port_kpis` (
+-- 	`kpi_id` int NOT NULL,
+-- 	`kpi_category` varchar(500) NOT NULL,
+-- 	`kpi` varchar(500) NOT NULL,
+-- 	`kpi_international_target` varchar(500) NOT NULL,
+-- 	`kpi_national_target` varchar(500) NOT NULL,
+-- 	`current_status` varchar(500),
+-- 	`created_at` timestamp NOT NULL DEFAULT (now()),
+-- 	CONSTRAINT `port_kpis_kpi_id` PRIMARY KEY(`kpi_id`)
+-- );
+-- --> statement-breakpoint
+-- CREATE TABLE `port_master` (
+-- 	`port_id` int NOT NULL,
+-- 	`name` varchar(100) NOT NULL,
+-- 	`country` varchar(100) NOT NULL,
+-- 	`city` varchar(100) NOT NULL,
+-- 	`image_url` varchar(200) NOT NULL,
+-- 	`number_of_berths` int NOT NULL,
+-- 	`port_type` varchar(100) NOT NULL,
+-- 	`average_tat` decimal(6,3) NOT NULL,
+-- 	`port_capacity` int NOT NULL,
+-- 	`dominant_cargo` varchar(200) NOT NULL,
+-- 	`lat` decimal(6,3) NOT NULL,
+-- 	`lng` decimal(6,3) NOT NULL,
+-- 	`status` varchar(10) NOT NULL,
+-- 	`ind_port_name` varchar(100),
+-- 	`ind_port_lat` decimal(6,3),
+-- 	`ind_port_lng` decimal(6,3),
+-- 	`created_at` timestamp NOT NULL DEFAULT (now()),
+-- 	CONSTRAINT `port_master_port_id` PRIMARY KEY(`port_id`)
+-- );
+-- --> statement-breakpoint
+-- ALTER TABLE `kpi_target_links` ADD CONSTRAINT `kpi_target_links_kpi_id_port_kpis_kpi_id_fk` FOREIGN KEY (`kpi_id`) REFERENCES `port_kpis`(`kpi_id`) ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+-- ALTER TABLE `port_green_initiatives` ADD CONSTRAINT `port_green_initiatives_kpi_id_port_kpis_kpi_id_fk` FOREIGN KEY (`kpi_id`) REFERENCES `port_kpis`(`kpi_id`) ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+-- ALTER TABLE `port_green_initiatives` ADD CONSTRAINT `port_green_initiatives_portId_port_master_port_id_fk` FOREIGN KEY (`portId`) REFERENCES `port_master`(`port_id`) ON DELETE cascade ON UPDATE no action;
+
+-- INSERT INTO `port_master` (`port_id`, `name`, `country`, `city`, `image_url`, `number_of_berths`, `port_type`, `average_tat`, `port_capacity`, `dominant_cargo`, `lat`, `lng`, `status`, `ind_port_name`, `ind_port_lat`, `ind_port_lng`)
+-- VALUES
+-- (1001, 'Port of Amsterdam', 'Netherlands', 'Amsterdam', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 125, 'Multipurpose', 22.3, 100, 'Bulk cargo', 52.408, 4.8541, 'Active', 'Jawaharlal', 18.931, 72.959),
+-- (1002, 'Port of Rotterdam', 'Netherlands', 'Rotterdam', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 170, 'Multipurpose', 1.0, 467, 'Oil and Petroleum', 51.95, 4.1453, 'Active', 'Jawaharlal', 18.931, 72.959),
+-- (1003, 'Jawaharlal Nehru', 'India', 'Navi Mumbai', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 5, 'Container Port', 1.8, 58, 'Containers', 18.931, 72.959, 'Active', 'Jawaharlal', 18.931, 72.959),
+-- (1004, 'Port of Antwerp', 'Belgium', 'Antwerp', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 90, 'Multi-cargo', 1.0, 50, 'Chemicals', 51.241, 4.4073, 'Active', 'Jawaharlal', 18.931, 72.959),
+-- (1005, 'Port of Gothenburg', 'Sweden', 'Gothenburg', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 20, 'Nordic Hub', 1.0, 50, 'Automobile', 57.702, 11.9479, 'Active', 'Jawaharlal', 18.931, 72.959),
+-- (1006, 'Port of Hamburg', 'Germany', 'Hamburg', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 30, 'Major Seaport', 1.3, 50, 'Machinery', 53.551, 9.9936, 'Active', 'Jawaharlal', 18.931, 72.959),
+-- (1007, 'Visakhapatnam', 'India', 'Andhra Pradesh', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 24, 'Major Seaport', 2.5, 135, 'Coal, Iron Ore', 17.696, 83.2873, 'Active', 'Vishakhapatnam', 17.696, 83.287),
+-- (1008, 'Port of Singapore', 'Singapore', 'Singapore', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 67, 'Transshipment', 0.5, 50, 'Containers', 1.259, 103.7545, 'Active', 'Vishakhapatnam', 17.696, 83.287),
+-- (1009, 'Shanghai Port', 'China', 'Shanghai', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 191, 'Deep-water', 1.0, 31, 'Containers', 31.4, 121.4971, 'Active', 'Vishakhapatnam', 17.696, 83.287),
+-- (1010, 'Busan Port', 'South Korea', 'Busan', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 187, 'Transshipment', 1.2, 21, 'Containers', 35.1, 129.045, 'Active', 'Vishakhapatnam', 17.696, 83.287),
+-- (1011, 'Los Angeles Port', 'United States', 'Los Angeles', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 25, 'Container Port', 5.0, 50, 'Electronics', 34.045, -118.2493, 'Active', 'Vishakhapatnam', 17.696, 83.287),
+-- (1012, 'Long Beach Port', 'United States', 'Long Beach', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 22, 'Container Port', 4.0, 50, 'Automobile', 33.731, -118.1883, 'Active', 'Vishakhapatnam', 17.696, 83.287),
+-- (1013, 'V.O. Chidambaranar', 'India', 'Tamil Nadu', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 24, 'Major Seaport', 2.0, 5, 'Coal, Wind', 8.756, 78.179, 'Active', 'V.O. Chidambaranar', 8.756, 78.179),
+-- (1014, 'Port of Cape Town', 'South Africa', 'Singapore', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 12, 'Multi-purpose', 3.0, 3, 'Fruit', -33.919, 18.4233, 'Active', 'V.O. Chidambaranar', 8.756, 78.179),
+-- (1015, 'Port of Harcourt', 'Nigeria', 'Harcourt', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 6, 'Oil & Gas Port', 5.0, 0, 'Petroleum', 4.824, 7.0336, 'Active', 'V.O. Chidambaranar', 8.756, 78.179),
+-- (1016, 'Port of New Jersey', 'United States', 'New Jersey', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 8, 'East Coast', 2.5, 3, 'Retail Goods', 40.668, -74.0407, 'Active', 'V.O. Chidambaranar', 8.756, 78.179),
+-- (1017, 'Port of Savannah', 'United States', 'Savannah', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 9, 'Container Port', 5.0, 5, 'Retail Goods', 32.081, -81.0883, 'Active', 'V.O. Chidambaranar', 8.756, 78.179),
+-- (1018, 'Port of Miami', 'United States', 'Miami', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 7, 'Cruise & Cargo', 2.0, 1, 'Perishables', 25.775, -80.1937, 'Active', 'V.O. Chidambaranar', 8.756, 78.179),
+-- (1019, 'Deendayal Port', 'India', 'Gujarat', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 24, 'Bulk Cargo', 2.0, 135, 'Petroleum', 23.064, 70.143, 'Active', 'Deendayal', 23.064, 70.143),
+-- (1020, 'Jeddah Port', 'Saudi Arabia', 'Jeddah', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 62, 'Commercial', 2.0, 4, 'General Cargo', 21.467, 39.1744, 'Active', 'Deendayal', 23.064, 70.143),
+-- (1021, 'DB World Jebel Ali', 'United Arab Emirates', 'Jebel Ali', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 30, 'Commercial', 0.7, 22, 'General Cargo', 25, 55.3, 'Active', 'Deendayal', 23.064, 70.143),
+-- (1022, 'Hamad Port', 'Qatar', 'Mesaieed', 'https://upload.wikimedia.org/wikipedia/commons/a/af/Manhattan.jpg', 4, 'Multi-purpose', 1.5, 8, 'Vehicles', 25.032, 51.5835, 'Active', 'Deendayal', 23.064, 70.143);
