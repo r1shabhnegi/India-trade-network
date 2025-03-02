@@ -10,7 +10,7 @@ export async function GET() {
     const result = await db.select().from(portMaster);
 
     return NextResponse.json({ data: result }, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch port data" },
       { status: 500 }

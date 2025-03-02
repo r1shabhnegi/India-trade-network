@@ -97,7 +97,7 @@ const MapBoard = () => {
     });
 
     return () => polylines.forEach((polyline) => polyline.setMap(null));
-  }, [map, polylinePaths]);
+  }, [clickedPort, hoveredPort, map, polylinePaths]);
 
   return (
     <>

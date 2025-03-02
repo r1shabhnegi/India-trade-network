@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       );
 
     return NextResponse.json({ data: result }, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch port green initiatives data" },
       { status: 500 }

@@ -77,14 +77,10 @@ const Markers: React.FC<MarkersProps> = ({
   const handleClickMarker = useCallback(
     (port: Port) => {
       // Toggle clicked port card state
-      setClickedPortCard((prev) =>
-        prev?.name === port.name
-          ? null
-          : { lat: +port.lat, lng: +port.lng, name: port.name }
-      );
+      setClickedPortCard({ lat: +port.lat, lng: +port.lng, name: port.name });
 
       // Toggle clicked port state
-      setClickedPort((prev) => (prev?.name === port.name ? null : port));
+      setClickedPort(port);
 
       // Set map center and zoom if port doesn't have ind_port_name
       if (port && !port.ind_port_name) {
