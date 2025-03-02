@@ -41,7 +41,7 @@ const PortFacts = ({ port }: { port: Port }) => {
           <div className='w-full'>
             <div className='flex font-medium rounded-md my-2 md:py-0.5 justify-between items-center lg:bg-gray-100'>
               <p className='pl-2 md:pl-5 lg:pl-2 xl:pl-5'>City :</p>
-              <span className='font-normal md:ml-4 xl:ml-6 pr-2 sm:pr-0 xl:w-[50%] '>
+              <span className='font-normal md:ml-4 xl:ml-6 pr-2  xl:w-[50%] '>
                 {port.city}
               </span>
             </div>
@@ -49,37 +49,37 @@ const PortFacts = ({ port }: { port: Port }) => {
               <p className='pl-2 md:pl-5 lg:pl-2 xl:pl-5'>
                 Number of <span>berths :</span>
               </p>
-              <span className='font-normal md:ml-4 xl:ml-6 pr-2 sm:pr-0 xl:w-[50%] '>
+              <span className='font-normal md:ml-4 xl:ml-6 pr-2  xl:w-[50%] '>
                 {port.number_of_berths}
               </span>
             </div>
             <div className='flex font-medium rounded-md my-2.5 md:py-0.5 justify-between items-center lg:bg-gray-100'>
               <p className='pl-2 md:pl-5 lg:pl-2 xl:pl-5'>Port type :</p>
-              <span className='font-normal md:ml-4 xl:ml-6 pr-2 sm:pr-0 xl:w-[50%]'>
+              <span className='font-normal md:ml-4 xl:ml-6 pr-2  xl:w-[50%]'>
                 {port.port_type}
               </span>
             </div>
             <div className='flex font-medium rounded-md my-2.5 md:py-0.5 justify-between items-center lg:bg-gray-100'>
               <p className='pl-2 md:pl-5 lg:pl-2 xl:pl-5'>Average T.A.T. :</p>
-              <span className='font-normal md:ml-4 xl:ml-6 pr-2 sm:pr-0 xl:w-[50%]'>
+              <span className='font-normal md:ml-4 xl:ml-6 pr-2  xl:w-[50%]'>
                 {Number(port.average_tat).toFixed(1)} Days
               </span>
             </div>
             <div className='flex font-medium rounded-md my-2.5 md:py-0.5 justify-between items-center lg:bg-gray-100'>
               <p className='pl-2 md:pl-5 lg:pl-2 xl:pl-5'>Port capacity :</p>
-              <span className='font-normal md:ml-4 xl:ml-6 pr-2 sm:pr-0 xl:w-[50%]'>
+              <span className='font-normal md:ml-4 xl:ml-6 pr-2  xl:w-[50%]'>
                 {port.port_capacity} Million TEU
               </span>
             </div>
             <div className='flex font-medium rounded-md my-2.5 md:py-0.5 justify-between items-center lg:bg-gray-100'>
               <p className='pl-2 md:pl-5 lg:pl-2 xl:pl-5'>Dominant cargo :</p>
-              <span className='font-normal md:ml-4 xl:ml-6 pr-2 sm:pr-0 xl:w-[50%]'>
+              <span className='font-normal md:ml-4 xl:ml-6 pr-2  xl:w-[50%]'>
                 {port.dominant_cargo}
               </span>
             </div>
             <div className='flex font-medium rounded-md my-2.5 md:py-0.5 justify-between items-center lg:bg-gray-100'>
               <p className='pl-2 md:pl-5 lg:pl-2xl:pl-5'>Status :</p>
-              <span className='font-normal md:ml-4 pr-2 sm:pr-0 xl:ml-6 xl:w-[50%]'>
+              <span className='font-normal md:ml-4 pr-2  xl:ml-6 xl:w-[50%]'>
                 {port.status}
               </span>
             </div>

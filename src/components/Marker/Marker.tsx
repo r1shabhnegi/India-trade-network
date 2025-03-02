@@ -162,8 +162,7 @@ const Markers: React.FC<MarkersProps> = ({
               onMouseEnter={(e) => handleHoverMarker(port, e)}
               onMouseLeave={() => handleHoverMarker(null)}
               size='3x'
-              className='opacity-80 hover:opacity-100 hover:text-green-600 text-green-800'
-              // opacity={0.8}
+              className='opacity-80 hover:opacity-100 hover:text-green-500 text-green-800'
             />
             {clickedPortCard?.name === port.name && (
               <MarkerCard

@@ -36,8 +36,8 @@ const ModalWindow = ({
         <div
           key={port.port_id + port.country}
           className='w-[100%] flex flex-col overflow-y-auto lg:flex-row justify-between h-[100%] xl:gap-[0.5rem]'>
-          <div className='lg:hidden gap-5'>
-            <h1 className='text-2xl text-gray-700 font-bold text-center tracking-tight'>
+          <div className='lg:hidden gap-5 sm:mb-2'>
+            <h1 className='text-2xl mt-2 sm:mt-0  text-gray-700 font-bold text-center tracking-tight'>
               {port.name}
             </h1>
             <div className='text-center gap-2 text-[14px] flex justify-center items-center font-medium text-gray-500'>
