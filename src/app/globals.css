@@ -57,8 +57,6 @@ svg {
 
 *::-webkit-scrollbar-track {
   background: rgba(165, 165, 165, 0.232);
-  margin-top: 4rem;
-  margin-bottom: 4rem;
 }
 
 *::-webkit-scrollbar-thumb {

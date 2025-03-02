@@ -61,7 +61,7 @@ const Kpis = ({ setIsInitiativesOpen, kpis, setKpiId }: KpisProps) => {
     <div className='ml-3'>
       {Object.keys(kpisObj).map((heading) => (
         <div key={heading}>
-          <h1 className='text-[17px] font-bold text-gray-700 mt-2'>
+          <h1 className='text-[1.1rem] font-bold text-gray-700 mt-2'>
             {heading.toUpperCase()}
           </h1>
           {kpisObj[heading].map(
