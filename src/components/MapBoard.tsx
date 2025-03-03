@@ -7,6 +7,7 @@ import { polylinesColor } from "@/lib/PolylinesColor";
 import ModalWindow from "./ModalWindow/ModalWindow";
 import { polylinesCurve, createCurvePath } from "@/lib/polylinesCurves";
 import { getPortPaths } from "@/lib/getPortPath";
+import Loader from "./Loader";
 
 const DEFAULT_COORDS = { lat: 22.5638, lng: 78.7861 }; // India center
 const DEFAULT_ZOOM = 4.8;
@@ -30,6 +31,7 @@ const MapBoard = () => {
     lng: number;
     name: string;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const map = useMap();
 
@@ -42,6 +44,7 @@ const MapBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const [portsData, kpisData] = await Promise.all([
           getPorts(),
           getKpis(),
@@ -50,6 +53,8 @@ const MapBoard = () => {
         setKpis(kpisData);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -99,6 +104,7 @@ const MapBoard = () => {
     return () => polylines.forEach((polyline) => polyline.setMap(null));
   }, [clickedPort, hoveredPort, map, polylinePaths]);
 
+  if (isLoading) return <Loader />;
   return (
     <>
       <Map

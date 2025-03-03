@@ -50,11 +50,9 @@ const MarkerHoverCard: FC<Props> = React.memo(
       <div
         ref={cardRef}
         className={`absolute ${flip ? "top-10" : "bottom-14"} 
-      bg-white p-2 pb-1 rounded-lg w-36 sm:w-40 md:w-52 xl:w-60 left-[50%] -translate-x-[50%] shadow-2xl z-[1000]`}
+      bg-white p-2 pb-1 rounded-lg w-36 sm:w-40 md:w-52 lg:w-56 left-[50%] -translate-x-[50%] shadow-2xl z-[1000]`}
         onClick={handleClickCard}>
-        <a
-          onClick={handleClickCard}
-          className='w-full'>
+        <div className='w-full'>
           <Image
             src={port?.image_url}
             className='rounded-md w-full h-auto object-cover aspect-[4/3]'
@@ -63,7 +61,7 @@ const MarkerHoverCard: FC<Props> = React.memo(
             sizes='(max-width: 768px) 100vw, 230px'
             alt='Port Image'
             onError={(e) => {
-              e.currentTarget.src = "/fallback-image.jpg";
+              e.currentTarget.src = "@/assets/port_alt.jpg";
             }}
           />
 
@@ -79,7 +77,7 @@ const MarkerHoverCard: FC<Props> = React.memo(
             />
             <p>{port?.country}</p>
           </div>
-        </a>
+        </div>
       </div>
     );
   }

@@ -71,7 +71,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
 
     return createPortal(
       <div
-        className={`fixed bg-white p-2 pb-1 rounded-lg shadow-2xl z-[2999] w-36 sm:w-40 md:w-52 xl:w-60 transition-opacity ease-in-out duration-300 ${
+        className={`fixed bg-white p-2 pb-1 rounded-lg shadow-2xl z-[2999] w-36 sm:w-40 md:w-52 lg:w-56 transition-opacity ease-in-out duration-300 ${
           shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         style={{
@@ -89,7 +89,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
               sizes='(max-width: 768px) 100vw, 230px'
               alt='Port Image'
               onError={(e) => {
-                e.currentTarget.src = "/fallback-image.jpg";
+                e.currentTarget.src = "@/assets/port_alt.jpg";
               }}
             />
 

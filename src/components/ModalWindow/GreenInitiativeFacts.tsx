@@ -31,11 +31,11 @@ const GreenInitiativeFacts = ({
           <>
             {!isFullScreen && (
               <span
-                className='absolute top-[0.275rem] hover:bg-green-200 bg-gray-200 p-1.5 cursor-pointer rounded-md left-1.5 justify-center items-center'
+                className='absolute top-[0.275rem] hover:bg-green-200 bg-gray-200 p-1.5 cursor-pointer size-8 rounded-md left-1.5 justify-center items-center'
                 onClick={() => setIsInitiativesOpen(!isIsInitiativeOpen)}>
                 <FontAwesomeIcon
                   icon={faArrowLeftLong}
-                  className='size-5 text-gray-600 p-0 m-0'
+                  className='size-full text-gray-600 p-0 m-0'
                 />
               </span>
             )}

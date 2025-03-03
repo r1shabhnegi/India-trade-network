@@ -17,6 +17,9 @@ const PortFacts = ({ port }: { port: Port }) => {
           className='w-full h-full rounded-md'
           width={500}
           height={500}
+          onError={(e) => {
+            e.currentTarget.src = "@/assets/port_alt.jpg";
+          }}
         />
       </div>
 

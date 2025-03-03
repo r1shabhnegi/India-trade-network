@@ -47,6 +47,9 @@ const ModalWindow = ({
                 className=''
                 width={25}
                 height={25}
+                onError={(e) => {
+                  e.currentTarget.src = "@/assets/port_alt.jpg";
+                }}
               />
               <p>{port.country}</p>
             </div>
