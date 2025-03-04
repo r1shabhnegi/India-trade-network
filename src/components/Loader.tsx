@@ -4,7 +4,7 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const Loader = () => {
   return (
-    <div className='w-full mt-36 flex justify-center items-center'>
+    <div className='w-full pt-36 flex justify-center items-center'>
       <FontAwesomeIcon
         icon={faCircleNotch}
         size='2x'

@@ -10,11 +10,11 @@ const PortFacts = ({ port }: { port: Port }) => {
 
   return (
     <div className='lg:w-[49%] lg:min-h-full flex flex-col sm:flex-row lg:flex-col gap[0.7rem] sm:pr-2'>
-      <div className='p-1 sm:w-[45%] md:w-[55%] lg:w-full lg:h-[45%] bg-[rgb(241, 241, 241)] rounded-lg'>
+      <div className='p-1 m-2 sm:m-0 sm:w-[45%] md:w-[55%] lg:w-full lg:h-[45%]'>
         <Image
           src={port?.image_url}
           alt='Port Image Kpi'
-          className='w-full h-full rounded-md'
+          className='w-full h-full rounded-xl object-cover'
           width={500}
           height={500}
           onError={(e) => {
@@ -23,7 +23,7 @@ const PortFacts = ({ port }: { port: Port }) => {
         />
       </div>
 
-      <div className='h-full bg-[rgb(241, 241, 241)] sm:w-[55%] md:w-[50%] lg:w-full rounded-md bg-gray-20 overflow-y-auto xl:m-0.5 lg:bg-red-20'>
+      <div className='h-full m-2 sm:m-0 bg-[rgb(241, 241, 241)] sm:w-[55%] md:w-[50%] lg:w-full rounded-md bg-gray-20 overflow-y-auto xl:m-0.5 lg:bg-red-20'>
         <div className='hidden lg:flex lg:flex-col'>
           <h1 className='text-2xl text-gray-700 font-bold text-center'>
             {port.name}

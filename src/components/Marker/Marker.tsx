@@ -69,19 +69,19 @@ const Markers: React.FC<MarkersProps> = ({
     () => ({
       "Jawaharlal Nehru Port Authority": {
         center: { lat: 42.1877, lng: 44.0107 },
-        zoom: 3.5,
+        zoom: 2.5,
       },
       "Vishakhapatnam Port Authority": {
         center: { lat: 33.6868, lng: 9.5375 },
-        zoom: 3,
+        zoom: 2,
       },
       "V.O. Chidambaranar Port Authority": {
-        center: { lat: 18.0339, lng: 1.6596 },
+        center: { lat: 12.0339, lng: 1.6596 },
         zoom: 3,
       },
       "Deendayal Port Authority": {
         center: { lat: 29.4893, lng: 60.864 },
-        zoom: 5,
+        zoom: 4,
       },
     }),
     []

@@ -6,9 +6,11 @@ import React, { useState } from "react";
 
 const TargetSection = ({ label, targetText, links }: ITargetSection) => {
   return (
-    <div className='flex flex-col sm:flex-row border-t border-gray-200 mt-3 pt-3'>
+    <div className='flex flex-col sm:flex-row justify-between border-t border-gray-200 mt-3 pt-3'>
       <div className='sm:w-[30%]'>
-        <p className='font-semibold text-gray-700'>{label} :</p>
+        <p className='font-semibold text-gray-700 whitespace-nowrap'>
+          {label} :
+        </p>
       </div>
       <div className='flex flex-col'>
         <p className='flex-1'>{targetText}</p>
@@ -76,18 +78,23 @@ const Kpis = ({ setIsInitiativesOpen, kpis, setKpiId }: KpisProps) => {
               return (
                 <div
                   key={kpi_id}
-                  className={`relative rounded-md mr-4 px-1 bg-gray-5 my-3 justify-between ${
+                  className={`relative rounded-md mr-4 px-1 bg-gray-5 my-[0.7rem] justify-between ${
                     dropdownKpi === kpi ? "bg-gray-100" : ""
                   }`}
-                  onMouseOver={() => setDropdownKpi(kpi)}
-                  onMouseOut={() => setDropdownKpi(null)}
+                  // onMouseOver={() => setDropdownKpi(kpi)}
+                  // onMouseOut={() => setDropdownKpi(null)}
                   onClick={() =>
                     setDropdownKpi(
                       dropdownKpi && dropdownKpi === kpi ? null : kpi
                     )
                   }>
-                  <div className='flex font-medium justify-between items-center text-sm text-gray-800 cursor-pointer'>
-                    <p className='underline hover:text-black underline-offset-2'>
+                  <div className='flex justify-between items-center text-sm text-gray-800 cursor-pointer'>
+                    <p
+                      className={`underline  underline-offset-2 ${
+                        dropdownKpi && dropdownKpi === kpi
+                          ? "text-blue-700 font-medium"
+                          : "hover:text-blue-700"
+                      }`}>
                       {kpi}
                     </p>
                     <FontAwesomeIcon

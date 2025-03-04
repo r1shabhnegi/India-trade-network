@@ -20,7 +20,7 @@ const GreenInitiativeFacts = ({
   const [kpiId, setKpiId] = useState<string>("");
 
   return (
-    <div className='flex-1 min-h-full sm:mr-3 overflow-y-auto mt-4 lg:mt-0'>
+    <div className='flex-1 min-h-full sm:pr-3 overflow-y-auto mt-4 lg:mt-0'>
       <div className='relative lg:bg-gray-100 rounded-lg py-1 border-gray-200 mb-4 mt-1'>
         <h1 className='text-center underline sm:no-underline text-2xl font-bold text-gray-600 '>
           {!isIsInitiativeOpen

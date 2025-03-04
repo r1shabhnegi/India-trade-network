@@ -10,7 +10,7 @@ import { getPortPaths } from "@/lib/getPortPath";
 import Loader from "./Loader";
 
 const DEFAULT_COORDS = { lat: 22.5638, lng: 78.7861 }; // India center
-const DEFAULT_ZOOM = 4.8;
+const DEFAULT_ZOOM = 4.5;
 
 const MapBoard = () => {
   const [ports, setPorts] = useState<Port[]>([]);

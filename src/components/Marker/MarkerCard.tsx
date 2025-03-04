@@ -49,7 +49,7 @@ const MarkerHoverCard: FC<Props> = React.memo(
     return (
       <div
         ref={cardRef}
-        className={`absolute ${flip ? "top-10" : "bottom-14"} 
+        className={`absolute ${flip ? "top-10" : "bottom-14"}  
       bg-white p-2 pb-1 rounded-lg w-36 sm:w-40 md:w-52 lg:w-56 left-[50%] -translate-x-[50%] shadow-2xl z-[1000]`}
         onClick={handleClickCard}>
         <div className='w-full'>

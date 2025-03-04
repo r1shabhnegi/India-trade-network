@@ -4,7 +4,7 @@ import "./globals.css";
 
 const roboto = Poppins({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
