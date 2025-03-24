@@ -9,7 +9,9 @@ import { polylinesCurve, createCurvePath } from "@/lib/polylinesCurves";
 import { getPortPaths } from "@/lib/getPortPath";
 import Loader from "./Loader";
 
-const DEFAULT_COORDS = { lat: 22.5638, lng: 78.7861 }; // India center
+const DEFAULT_COORDS = { lat: 22.5638, lng: 78.7861 };
+
+// India center
 const DEFAULT_ZOOM = 4.5;
 
 const MapBoard = () => {
@@ -31,7 +33,7 @@ const MapBoard = () => {
     lng: number;
     name: string;
   } | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const map = useMap();
 
@@ -42,28 +44,36 @@ const MapBoard = () => {
   }, [map, zoom, defaultCenter]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPorts = async () => {
       try {
-        setIsLoading(true);
-        const [portsData, kpisData] = await Promise.all([
-          getPorts(),
-          getKpis(),
-        ]);
+        const portsData = await getPorts();
         setPorts(portsData);
-        setKpis(kpisData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching ports data:", error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchData();
+    fetchPorts();
+  }, []);
+
+  useEffect(() => {
+    const fetchKpis = async () => {
+      try {
+        const kpisData = await getKpis();
+        setKpis(kpisData);
+      } catch (error) {
+        console.error("Error fetching KPIs data:", error);
+      }
+    };
+
+    fetchKpis();
   }, []);
 
   const polylinePaths = useMemo(() => {
-    const clickedPaths = getPortPaths(clickedPort, ports);
-    const hoveredPaths = getPortPaths(hoveredPort, ports);
+    const clickedPaths = clickedPort ? getPortPaths(clickedPort, ports) : [];
+    const hoveredPaths = hoveredPort ? getPortPaths(hoveredPort, ports) : [];
     return [...clickedPaths, ...hoveredPaths];
   }, [clickedPort, hoveredPort, ports]);
 
@@ -73,9 +83,7 @@ const MapBoard = () => {
   }, []);
 
   useEffect(() => {
-    if (!map) return;
-
-    if ((!clickedPort && !hoveredPort) || polylinePaths.length === 0) return;
+    if (!map || polylinePaths.length === 0) return;
 
     const polylines = polylinePaths.map((polylinePath) => {
       const [sourcePort, targetPort] = polylinePath;
@@ -102,7 +110,7 @@ const MapBoard = () => {
     });
 
     return () => polylines.forEach((polyline) => polyline.setMap(null));
-  }, [clickedPort, hoveredPort, map, polylinePaths]);
+  }, [map, polylinePaths]);
 
   if (isLoading) return <Loader />;
   return (

@@ -1,9 +1,8 @@
 import { KPIS } from "@/lib/types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeftLong, faExpand } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import Initiatives from "./Initiatives";
 import Kpis from "./Kpis";
+import { ArrowLeft, Expand } from "lucide-react";
 
 const GreenInitiativeFacts = ({
   kpis,
@@ -33,10 +32,7 @@ const GreenInitiativeFacts = ({
               <span
                 className='absolute top-[0.275rem] hover:bg-green-200 bg-gray-200 p-1.5 cursor-pointer size-8 rounded-md left-1.5 justify-center items-center'
                 onClick={() => setIsInitiativesOpen(!isIsInitiativeOpen)}>
-                <FontAwesomeIcon
-                  icon={faArrowLeftLong}
-                  className='size-full text-gray-600 p-0 m-0'
-                />
+                <ArrowLeft className='size-full text-gray-600 p-0 m-0' />
               </span>
             )}
             <span
@@ -44,10 +40,7 @@ const GreenInitiativeFacts = ({
                 isFullScreen ? "hover:bg-red-200" : "hover:bg-green-200"
               }  p-1.5 cursor-pointer rounded-md right-1.5 flex justify-center items-center`}
               onClick={() => setIsFullScreen(!isFullScreen)}>
-              <FontAwesomeIcon
-                icon={faExpand}
-                className='size-5 text-gray-600 p-0 m-0'
-              />
+              <Expand className='size-5 text-gray-600 p-0 m-0' />
             </span>
           </>
         )}

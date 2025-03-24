@@ -1,10 +1,9 @@
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
 import React, { useCallback, useState, useMemo, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MarkerCard from "./MarkerCard";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { Port } from "@/lib/types";
 import HoveredCardPortal from "./HoveredCardPortal";
+import { Leaf } from "lucide-react";
 
 interface PortLocation {
   lat: number;
@@ -157,13 +156,12 @@ const Markers: React.FC<MarkersProps> = ({
             position={position}
             zIndex={isActive ? 100 : 1}
             onClick={() => handleClickMarker(port)}>
-            <FontAwesomeIcon
-              icon={faLeaf}
+            <Leaf
               onMouseEnter={(e) => handleHoverMarker(port, e)}
               onMouseLeave={() => handleHoverMarker(null)}
-              size='3x'
-              className='opacity-80 hover:opacity-100 hover:text-green-500 text-green-800'
+              className='size-8 opacity-70 hover:opacity-100 fill-green-800 hover:fill-green-600 hover:text-green-600 text-green-800'
             />
+
             {clickedPortCard?.name === port.name && (
               <MarkerCard
                 port={port}

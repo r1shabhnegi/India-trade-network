@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { KPIS, Port } from "@/lib/types";
 import GreenInitiativeFacts from "./GreenInitiativeFacts";
 import Image from "next/image";
 import { flags } from "@/lib/flags";
 import PortFacts from "./PortFacts";
+import { X } from "lucide-react";
 
 const ModalWindow = ({
   port,
@@ -71,10 +70,7 @@ const ModalWindow = ({
         <span
           className='absolute sm:flex justify-center rounded-full items-center bg-slate-400 hover:bg-red-500 cursor-pointer -right-6 -top-5 hidden'
           onClick={() => setIsModal(false)}>
-          <FontAwesomeIcon
-            icon={faXmark}
-            className='size-7 text-white p-1.5'
-          />
+          <X className='size-7 text-white p-1.5' />
         </span>
       </div>
     </div>

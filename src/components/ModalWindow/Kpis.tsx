@@ -1,6 +1,5 @@
 import { KPIS, KpisByCategory, ITargetSection } from "@/lib/types";
-import { faCaretDown, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -97,14 +96,11 @@ const Kpis = ({ setIsInitiativesOpen, kpis, setKpiId }: KpisProps) => {
                       }`}>
                       {kpi}
                     </p>
-                    <FontAwesomeIcon
-                      icon={
-                        dropdownKpi && dropdownKpi === kpi
-                          ? faCaretDown
-                          : faCaretRight
-                      }
-                      className='size-5 text-gray-400 ml-1'
-                    />
+                    {dropdownKpi && dropdownKpi === kpi ? (
+                      <ChevronDown className='size-5 text-gray-400 ml-1' />
+                    ) : (
+                      <ChevronRight className='size-5 text-gray-400 ml-1' />
+                    )}
                   </div>
                   {dropdownKpi === kpi && (
                     <div className='mt-2 flex flex-col justify-center text-sm p-4 rounded'>
