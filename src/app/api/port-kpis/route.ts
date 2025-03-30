@@ -31,9 +31,10 @@ export async function GET() {
     );
 
     return NextResponse.json({ data: kpisWithTargets }, { status: 200 });
-  } catch {
+  } catch (error) {
+    console.error("Error fetching port KPIs data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch port data" },
+      { error: "Failed to fetch port KPIs data" },
       { status: 500 }
     );
   }
