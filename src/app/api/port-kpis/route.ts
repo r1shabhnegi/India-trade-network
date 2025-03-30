@@ -1,34 +1,43 @@
 import { db } from "@/db";
 import { kpiTargetsLinks, portKpis } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { inArray } from "drizzle-orm";
 import { NextResponse } from "next/server";
+
 export async function GET() {
   try {
+    // Fetch all KPIs
     const kpisData = await db.select().from(portKpis);
 
-    const kpisWithTargets = await Promise.all(
-      kpisData.map(async (kpiData) => {
-        const targets = await db
-          .select()
-          .from(kpiTargetsLinks)
-          .where(eq(kpiTargetsLinks.kpi_id, kpiData.kpi_id));
+    // Get all KPI IDs
+    const kpiIds = kpisData.map((kpi) => kpi.kpi_id);
 
-        const nationalTargetsLinks = targets.filter(
-          (t) => t.target_type === "national"
-        );
-        const internationalTargetsLinks = targets.filter(
-          (t) => t.target_type === "international"
-        );
+    // Fetch all target links in a single query
+    const allTargetLinks = await db
+      .select()
+      .from(kpiTargetsLinks)
+      .where(inArray(kpiTargetsLinks.kpi_id, kpiIds));
 
-        return {
-          kpiData,
-          targetsLinks: {
-            national: nationalTargetsLinks,
-            international: internationalTargetsLinks,
-          },
-        };
-      })
-    );
+    // Group the target links by KPI
+    const kpisWithTargets = kpisData.map((kpiData) => {
+      const kpiTargets = allTargetLinks.filter(
+        (target) => target.kpi_id === kpiData.kpi_id
+      );
+
+      const nationalTargetsLinks = kpiTargets.filter(
+        (t) => t.target_type === "national"
+      );
+      const internationalTargetsLinks = kpiTargets.filter(
+        (t) => t.target_type === "international"
+      );
+
+      return {
+        kpiData,
+        targetsLinks: {
+          national: nationalTargetsLinks,
+          international: internationalTargetsLinks,
+        },
+      };
+    });
 
     return NextResponse.json({ data: kpisWithTargets }, { status: 200 });
   } catch (error) {
