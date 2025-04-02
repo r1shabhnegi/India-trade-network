@@ -3,6 +3,10 @@ import { drizzle } from "drizzle-orm/mysql2";
 import dotenv from "dotenv";
 dotenv.config();
 
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL is not defined in environment variables");
+}
+
 let pool: mysql.Pool | null = null;
 
 export function getConnectionPool() {
@@ -12,7 +16,6 @@ export function getConnectionPool() {
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
-      // Add these settings for better Lambda performance
       enableKeepAlive: true,
       keepAliveInitialDelay: 0,
     });
