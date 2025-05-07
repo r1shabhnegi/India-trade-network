@@ -1,7 +1,6 @@
-import { flags } from "@/lib/flags";
 import { Port } from "@/lib/types";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 
 interface Props {
@@ -25,12 +24,6 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
     const [isVisible, setIsVisible] = useState(false);
     const [flipVertical, setFlipVertical] = useState(false);
     const portalRef = useRef<HTMLDivElement | null>(null);
-
-    const flag = useMemo(
-      () =>
-        port?.country ? flags[port.country as keyof typeof flags] : undefined,
-      [port?.country]
-    );
 
     useEffect(() => {
       const div = document.createElement("div");
@@ -81,25 +74,27 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
         }}>
         {port && (
           <>
-            <Image
-              src={port.image_url}
-              className='rounded-md w-full h-auto object-cover aspect-[4/3]'
-              width={500}
-              height={375}
-              sizes='(max-width: 768px) 100vw, 230px'
-              alt='Port Image'
-              onError={(e) => {
-                e.currentTarget.src = "@/assets/port_alt.jpg";
-              }}
-            />
+            {port.image_url && (
+              <Image
+                src={port.image_url}
+                className='rounded-md w-full h-auto object-cover aspect-[4/3]'
+                width={100}
+                height={80}
+                sizes='(max-width: 768px) 100vw, 230px'
+                alt='Port Image'
+                onError={(e) => {
+                  e.currentTarget.src = "@/assets/port_alt.jpg";
+                }}
+              />
+            )}
 
             <p className='text-center text-[0.8rem] md:text-[1rem] font-[600] text-gray-600 my-1'>
               {port.name}
             </p>
             <div className='text-center gap-1 text-[0.8rem] flex justify-center items-center text-gray-600'>
-              {flag && (
+              {port?.flag_url && (
                 <Image
-                  src={flag}
+                  src={port?.flag_url}
                   alt='Flag Icon'
                   width={22}
                   height={22}

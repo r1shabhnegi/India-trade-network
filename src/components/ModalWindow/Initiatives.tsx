@@ -19,7 +19,6 @@ const Initiatives = ({ portId, kpiId }: { portId: number; kpiId: string }) => {
             portId: portId.toString(),
             kpiId: kpiId.toString(),
           });
-
           setKpiPortInitiatives(result);
         } catch (error) {
           console.log(error);

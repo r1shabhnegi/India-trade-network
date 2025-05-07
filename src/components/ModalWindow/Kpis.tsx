@@ -1,5 +1,9 @@
 import { KPIS, KpisByCategory, ITargetSection } from "@/lib/types";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -80,8 +84,6 @@ const Kpis = ({ setIsInitiativesOpen, kpis, setKpiId }: KpisProps) => {
                   className={`relative rounded-md mr-4 px-1 bg-gray-5 my-[0.7rem] justify-between ${
                     dropdownKpi === kpi ? "bg-gray-100" : ""
                   }`}
-                  // onMouseOver={() => setDropdownKpi(kpi)}
-                  // onMouseOut={() => setDropdownKpi(null)}
                   onClick={() =>
                     setDropdownKpi(
                       dropdownKpi && dropdownKpi === kpi ? null : kpi
@@ -97,9 +99,15 @@ const Kpis = ({ setIsInitiativesOpen, kpis, setKpiId }: KpisProps) => {
                       {kpi}
                     </p>
                     {dropdownKpi && dropdownKpi === kpi ? (
-                      <ChevronDown className='size-5 text-gray-400 ml-1' />
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className='size-5 text-gray-400 ml-1'
+                      />
                     ) : (
-                      <ChevronRight className='size-5 text-gray-400 ml-1' />
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        className='size-5 text-gray-400 ml-1'
+                      />
                     )}
                   </div>
                   {dropdownKpi === kpi && (

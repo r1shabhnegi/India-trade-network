@@ -1,11 +1,15 @@
 import React from "react";
-import { LoaderCircle } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const Loader = () => {
   return (
-    <div className='w-full pt-36 flex justify-center items-center'>
-      <LoaderCircle className='animate-spin text-gray-400 p-0 m-0' />
-    </div>
+    <main className='w-full flex justify-center mt-40'>
+      <FontAwesomeIcon
+        icon={faCircleNotch}
+        className='animate-spin size-7 w-full text-gray-600 p-0 m-0'
+      />
+    </main>
   );
 };
 

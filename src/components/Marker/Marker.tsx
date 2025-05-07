@@ -1,15 +1,10 @@
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
-import React, { useCallback, useState, useMemo, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import MarkerCard from "./MarkerCard";
 import { Port } from "@/lib/types";
 import HoveredCardPortal from "./HoveredCardPortal";
-import { Leaf } from "lucide-react";
-
-interface PortLocation {
-  lat: number;
-  lng: number;
-  name: string;
-}
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 interface PortalInfo {
   port: Port | null;
@@ -26,10 +21,6 @@ interface MarkersProps {
   setHoveredPort: (port: Port | null) => void;
   hoveredPort: Port | null;
   setDefaultCenter: (defaultCenter: { lat: number; lng: number }) => void;
-  clickedPortCard: PortLocation | null;
-  setClickedPortCard: (clickedPortCard: PortLocation | null) => void;
-  hoveredPortCard: PortLocation | null;
-  setHoveredPortCard: (hoveredPortCard: PortLocation | null) => void;
 }
 
 const Markers: React.FC<MarkersProps> = ({
@@ -42,9 +33,6 @@ const Markers: React.FC<MarkersProps> = ({
   setHoveredPort,
   hoveredPort,
   setDefaultCenter,
-  clickedPortCard,
-  setClickedPortCard,
-  setHoveredPortCard,
 }) => {
   const [hoveredPortalInfo, setHoveredPortalInfo] = useState<PortalInfo>({
     port: null,
@@ -64,51 +52,25 @@ const Markers: React.FC<MarkersProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const portZoomSettings = useMemo(
-    () => ({
-      "Jawaharlal Nehru Port Authority": {
-        center: { lat: 42.1877, lng: 44.0107 },
-        zoom: 2.5,
-      },
-      "Vishakhapatnam Port Authority": {
-        center: { lat: 33.6868, lng: 9.5375 },
-        zoom: 2,
-      },
-      "V.O. Chidambaranar Port Authority": {
-        center: { lat: 12.0339, lng: 1.6596 },
-        zoom: 3,
-      },
-      "Deendayal Port Authority": {
-        center: { lat: 29.4893, lng: 60.864 },
-        zoom: 4,
-      },
-    }),
-    []
-  );
-
   const handleClickMarker = useCallback(
     (port: Port) => {
-      setClickedPortCard({ lat: +port.lat, lng: +port.lng, name: port.name });
-
       setClickedPort(port);
 
       if (!isMobile && port && !port.ind_port_name) {
-        const settings =
-          portZoomSettings[port.name as keyof typeof portZoomSettings];
+        const settings = {
+          center: {
+            lat: Number(port.zoom_center_lat),
+            lng: Number(port.zoom_center_lng),
+          },
+          zoom: Number(port.zoom),
+        };
         if (settings) {
           setDefaultCenter(settings.center);
           setDefaultZoom(settings.zoom);
         }
       }
     },
-    [
-      setClickedPortCard,
-      setClickedPort,
-      isMobile,
-      portZoomSettings,
-      setDefaultCenter,
-      setDefaultZoom,
-    ]
+    [setClickedPort, isMobile, setDefaultCenter, setDefaultZoom]
   );
 
   const handleHoverMarker = useCallback(
@@ -116,12 +78,6 @@ const Markers: React.FC<MarkersProps> = ({
       setHoveredPort(port);
 
       if (port) {
-        setHoveredPortCard({
-          lat: +port.lat,
-          lng: +port.lng,
-          name: port.name,
-        });
-
         if (event) {
           setHoveredPortalInfo({
             port,
@@ -129,11 +85,10 @@ const Markers: React.FC<MarkersProps> = ({
           });
         }
       } else {
-        setHoveredPortCard(null);
         setHoveredPortalInfo({ port: null, position: null });
       }
     },
-    [setHoveredPort, setHoveredPortCard]
+    [setHoveredPort]
   );
 
   return (
@@ -145,7 +100,9 @@ const Markers: React.FC<MarkersProps> = ({
       />
 
       {ports?.map((port) => {
+        // console.log(port);
         const position = { lat: +port.lat, lng: +port.lng };
+
         const isActive =
           clickedPort?.port_id === port.port_id ||
           hoveredPort?.port_id === port.port_id;
@@ -156,16 +113,17 @@ const Markers: React.FC<MarkersProps> = ({
             position={position}
             zIndex={isActive ? 100 : 1}
             onClick={() => handleClickMarker(port)}>
-            <Leaf
+            <FontAwesomeIcon
+              icon={faLeaf}
               onMouseEnter={(e) => handleHoverMarker(port, e)}
               onMouseLeave={() => handleHoverMarker(null)}
-              className='size-8 opacity-70 hover:opacity-100 fill-green-800 hover:fill-green-600 hover:text-green-600 text-green-800'
+              className='size-8 opacity-75 hover:opacity-100 fill-green-800 hover:fill-green-800 hover:text-green-800 text-green-800'
             />
 
-            {clickedPortCard?.name === port.name && (
+            {clickedPort?.port_id === port.port_id && (
               <MarkerCard
                 port={port}
-                clickedPort={clickedPortCard}
+                clickedPort={clickedPort}
                 setIsModal={setIsModal}
                 setModalPortData={setModalPortData}
               />

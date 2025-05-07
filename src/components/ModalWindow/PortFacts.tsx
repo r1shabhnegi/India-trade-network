@@ -1,26 +1,23 @@
-import { flags } from "@/lib/flags";
 import { Port } from "@/lib/types";
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React from "react";
 
 const PortFacts = ({ port }: { port: Port }) => {
-  const flag = useMemo(() => {
-    return flags[port.country as keyof typeof flags];
-  }, [port.country]);
-
   return (
     <div className='lg:w-[49%] lg:min-h-full flex flex-col sm:flex-row lg:flex-col gap[0.7rem] sm:pr-2'>
       <div className='p-1 m-2 sm:m-0 sm:w-[45%] md:w-[55%] lg:w-full lg:h-[45%]'>
-        <Image
-          src={port?.image_url}
-          alt='Port Image Kpi'
-          className='w-full h-full rounded-xl object-cover'
-          width={500}
-          height={500}
-          onError={(e) => {
-            e.currentTarget.src = "@/assets/port_alt.jpg";
-          }}
-        />
+        {port?.image_url && (
+          <Image
+            src={port?.image_url}
+            alt='Port Image Kpi'
+            className='w-full h-full rounded-xl object-cover'
+            width={400}
+            height={300}
+            onError={(e) => {
+              e.currentTarget.src = "@/assets/port_alt.jpg";
+            }}
+          />
+        )}
       </div>
 
       <div className='h-full m-2 sm:m-0 bg-[rgb(241, 241, 241)] sm:w-[55%] md:w-[50%] lg:w-full rounded-md bg-gray-20 overflow-y-auto xl:m-0.5 lg:bg-red-20'>
@@ -30,7 +27,7 @@ const PortFacts = ({ port }: { port: Port }) => {
           </h1>
           <div className='text-center gap-2 text-[14px] flex justify-center items-center font-medium text-gray-600'>
             <Image
-              src={flag}
+              src={port.flag_url}
               alt='Flag Icon'
               className=''
               width={25}
