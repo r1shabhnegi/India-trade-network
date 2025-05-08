@@ -36,17 +36,13 @@ const ModalWindow = ({
               {port.name}
             </h1>
             <div className='text-center gap-2 text-[14px] flex justify-center items-center font-medium text-gray-500'>
-              {port?.flag_url && (
-                <Image
-                  src={port?.flag_url}
-                  alt='Flag Icon'
-                  width={25}
-                  height={25}
-                  onError={(e) => {
-                    e.currentTarget.src = "@/assets/port_alt.jpg";
-                  }}
-                />
-              )}
+              <Image
+                src={port?.flag_url}
+                alt='Flag Icon'
+                width={25}
+                height={25}
+              />
+
               <p>{port.country}</p>
             </div>
           </div>
