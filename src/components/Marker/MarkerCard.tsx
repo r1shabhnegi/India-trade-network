@@ -1,5 +1,4 @@
 import { Port } from "@/lib/types";
-import Image from "next/image";
 import React, {
   FC,
   useLayoutEffect,
