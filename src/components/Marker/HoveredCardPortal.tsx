@@ -1,5 +1,4 @@
 import { Port } from "@/lib/types";
-import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 
