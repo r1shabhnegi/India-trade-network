@@ -100,7 +100,7 @@ const Markers: React.FC<MarkersProps> = ({
       />
 
       {ports?.map((port) => {
-        // console.log(port);
+     
         const position = { lat: +port.lat, lng: +port.lng };
 
         const isActive =

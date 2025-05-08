@@ -14,7 +14,7 @@ export default function Home() {
     queryKey: ["kpis"],
     queryFn: getKpis,
   });
-  console.log(kpis);
+
 
   const isLoading = isLoadingPorts;
 

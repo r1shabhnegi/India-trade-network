@@ -81,9 +81,7 @@ const MapBoard = ({
     return () => validPolylines.forEach((polyline) => polyline.setMap(null));
   }, [map, polylinePaths]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  if (isLoading) return <Loader />;
 
   return (
     <Map
@@ -105,13 +103,13 @@ const MapBoard = ({
             setHoveredPort={setHoveredPort}
             hoveredPort={hoveredPort}
           />
-          {isModal && (
+          {isModal ? (
             <ModalWindow
               setIsModal={setIsModal}
               port={modalPortData}
               kpis={kpis}
             />
-          )}
+          ) : null}
         </>
       ) : null}
     </Map>

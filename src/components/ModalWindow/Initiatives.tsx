@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getKpiInitiatives } from "@/api";
 import Link from "next/link";
 import { IInitiatives } from "@/lib/types";
 import Loader from "../Loader";
+import { useQuery } from "@tanstack/react-query";
 const Initiatives = ({ portId, kpiId }: { portId: number; kpiId: string }) => {
-  const [kpiPortInitiatives, setKpiPortInitiatives] = useState<IInitiatives[]>(
-    []
-  );
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (portId && kpiId) {
-      const fetch = async () => {
-        try {
-          setIsLoading(true);
-          const result = await getKpiInitiatives({
-            portId: portId.toString(),
-            kpiId: kpiId.toString(),
-          });
-          setKpiPortInitiatives(result);
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      fetch();
-    }
-  }, [kpiId, portId]);
+  const { data: kpiPortInitiatives = [], isLoading } = useQuery({
+    queryKey: ["initiatives", portId, kpiId],
+    queryFn: () =>
+      getKpiInitiatives({
+        portId: portId.toString(),
+        kpiId: kpiId.toString(),
+      }),
+  });
 
   if (isLoading) return <Loader />;
 
