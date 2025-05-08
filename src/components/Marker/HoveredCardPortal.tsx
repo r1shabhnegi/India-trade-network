@@ -81,10 +81,10 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
               height={80}
               sizes='(max-width: 768px) 100vw, 230px'
               alt='Port Image'
+              unoptimized
               onError={(e) => {
                 e.currentTarget.src = "@/assets/port.jpg";
               }}
-              unoptimized
             />
 
             <p className='text-center text-[0.8rem] md:text-[1rem] font-[600] text-gray-600 my-1'>

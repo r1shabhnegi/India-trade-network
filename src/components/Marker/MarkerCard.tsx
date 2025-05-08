@@ -49,6 +49,7 @@ const MarkerHoverCard: FC<Props> = React.memo(
             height={80}
             sizes='(max-width: 768px) 100vw, 230px'
             alt='Port Image'
+            unoptimized
             onError={(e) => {
               e.currentTarget.src = "@/assets/port_alt.jpg";
             }}
@@ -63,6 +64,7 @@ const MarkerHoverCard: FC<Props> = React.memo(
               alt='Flag Icon'
               width={22}
               height={22}
+              unoptimized
             />
 
             <p>{port?.country}</p>

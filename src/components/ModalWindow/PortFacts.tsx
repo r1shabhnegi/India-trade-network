@@ -31,6 +31,7 @@ const PortFacts = ({ port }: { port: Port }) => {
               className=''
               width={25}
               height={25}
+              unoptimized
             />
             <p>{port.country}</p>
           </div>
