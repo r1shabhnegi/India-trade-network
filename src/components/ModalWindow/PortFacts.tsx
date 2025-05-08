@@ -1,14 +1,20 @@
 import { Port } from "@/lib/types";
+import Image from "next/image";
 import React from "react";
 
 const PortFacts = ({ port }: { port: Port }) => {
   return (
     <div className='lg:w-[49%] lg:min-h-full flex flex-col sm:flex-row lg:flex-col gap[0.7rem] sm:pr-2'>
       <div className='p-1 m-2 sm:m-0 sm:w-[45%] md:w-[55%] lg:w-full lg:h-[45%]'>
-        <img
+        <Image
           src={port?.image_url}
           alt='Port Image Kpi'
           className='w-full h-full rounded-xl object-cover'
+          width={400}
+          height={300}
+          onError={(e) => {
+            e.currentTarget.src = "@/assets/port.jpg";
+          }}
         />
       </div>
 
@@ -18,9 +24,12 @@ const PortFacts = ({ port }: { port: Port }) => {
             {port.name}
           </h1>
           <div className='text-center gap-2 text-[14px] flex justify-center items-center font-medium text-gray-600'>
-            <img
+            <Image
               src={port.flag_url}
               alt='Flag Icon'
+              className=''
+              width={25}
+              height={25}
             />
             <p>{port.country}</p>
           </div>

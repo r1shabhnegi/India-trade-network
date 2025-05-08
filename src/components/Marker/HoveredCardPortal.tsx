@@ -1,4 +1,5 @@
 import { Port } from "@/lib/types";
+import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 
@@ -73,21 +74,27 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
         }}>
         {port && (
           <>
-            <img
+            <Image
               src={port.image_url}
               className='rounded-md w-full h-auto object-cover aspect-[4/3]'
-              // sizes='(max-width: 768px) 100vw, 230px'
-
+              width={100}
+              height={80}
+              sizes='(max-width: 768px) 100vw, 230px'
               alt='Port Image'
+              onError={(e) => {
+                e.currentTarget.src = "@/assets/port.jpg";
+              }}
             />
 
             <p className='text-center text-[0.8rem] md:text-[1rem] font-[600] text-gray-600 my-1'>
               {port.name}
             </p>
             <div className='text-center gap-1 text-[0.8rem] flex justify-center items-center text-gray-600'>
-              <img
+              <Image
                 src={port?.flag_url}
                 alt='Flag Icon'
+                width={22}
+                height={22}
               />
 
               <p>{port.country}</p>

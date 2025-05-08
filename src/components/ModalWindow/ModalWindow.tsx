@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { KPIS, Port } from "@/lib/types";
 import GreenInitiativeFacts from "./GreenInitiativeFacts";
+import Image from "next/image";
 import PortFacts from "./PortFacts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -35,9 +36,11 @@ const ModalWindow = ({
               {port.name}
             </h1>
             <div className='text-center gap-2 text-[14px] flex justify-center items-center font-medium text-gray-500'>
-              <img
+              <Image
                 src={port?.flag_url}
                 alt='Flag Icon'
+                width={25}
+                height={25}
               />
 
               <p>{port.country}</p>
