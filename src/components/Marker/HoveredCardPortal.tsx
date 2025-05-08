@@ -84,6 +84,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
               onError={(e) => {
                 e.currentTarget.src = "@/assets/port.jpg";
               }}
+              unoptimized
             />
 
             <p className='text-center text-[0.8rem] md:text-[1rem] font-[600] text-gray-600 my-1'>
@@ -95,6 +96,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
                 alt='Flag Icon'
                 width={22}
                 height={22}
+                unoptimized
               />
 
               <p>{port.country}</p>

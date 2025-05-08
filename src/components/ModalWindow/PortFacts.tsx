@@ -15,6 +15,7 @@ const PortFacts = ({ port }: { port: Port }) => {
           onError={(e) => {
             e.currentTarget.src = "@/assets/port.jpg";
           }}
+          unoptimized
         />
       </div>
 

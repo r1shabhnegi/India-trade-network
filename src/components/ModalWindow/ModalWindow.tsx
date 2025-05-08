@@ -41,6 +41,7 @@ const ModalWindow = ({
                 alt='Flag Icon'
                 width={25}
                 height={25}
+                unoptimized
               />
 
               <p>{port.country}</p>
