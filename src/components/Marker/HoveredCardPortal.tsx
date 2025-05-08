@@ -87,6 +87,7 @@ const HoveredCardPortal: React.FC<Props> = React.memo(
               <img
                 src={port?.flag_url}
                 alt='Flag Icon'
+                className='size-5 sm:size-6'
               />
 
               <p>{port.country}</p>
